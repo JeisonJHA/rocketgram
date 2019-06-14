@@ -2,11 +2,15 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
+const graphQLHttp = require("express-graphql");
 
 const app = express();
 
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
+
+const graphQLSchema = require("./graphQL/schema");
+const graphQLResolvers = require("./graphQL/resolvers");
 
 mongoose.connect(
   "mongodb+srv://rocketgram:rocketgram@cluster0-kkzfm.mongodb.net/test?retryWrites=true&w=majority",
@@ -25,6 +29,14 @@ app.use(
   express.static(path.resolve(__dirname, "..", "uploads", "resized"))
 );
 
-app.use(require("./routes"));
+// app.use(require("./routes"));
+app.use(
+  "/graphql",
+  graphQLHttp({
+    schema: graphQLSchema,
+    rootValue: graphQLResolvers,
+    graphiql: true
+  })
+);
 
 server.listen(3333);
