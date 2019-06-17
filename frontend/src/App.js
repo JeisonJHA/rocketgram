@@ -1,15 +1,20 @@
-import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { ApolloProvider } from "react-apollo";
 
-import Header from './components/Header'
-import Routes from './routes';
+import apolloClient from "./services/apollo";
+
+import Header from "./components/Header";
+import Routes from "./routes";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes />
-    </BrowserRouter>
+    <ApolloProvider client={apolloClient}>
+      <BrowserRouter>
+        <Header />
+        <Routes />
+      </BrowserRouter>
+    </ApolloProvider>
   );
 }
 

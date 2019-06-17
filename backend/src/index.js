@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const path = require("path");
 const cors = require("cors");
 const graphQLHttp = require("express-graphql");
+const { graphqlUploadExpress } = require("graphql-upload");
 
 const app = express();
 
@@ -29,9 +30,9 @@ app.use(
   express.static(path.resolve(__dirname, "..", "uploads", "resized"))
 );
 
-// app.use(require("./routes"));
 app.use(
   "/graphql",
+  graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
   graphQLHttp({
     schema: graphQLSchema,
     rootValue: graphQLResolvers,

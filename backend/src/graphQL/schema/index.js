@@ -1,6 +1,8 @@
 const { buildSchema } = require("graphql");
 
 module.exports = buildSchema(`
+scalar Upload
+
 type Post {
   _id:ID!
   author: String!
@@ -8,8 +10,8 @@ type Post {
   description: String
   hashtags: String
   image: String
-  like: Int
-  comment: [Comment!]
+  likes: Int
+  comment: [Comment]
   createdAt: String!
   updatedAt: String!
 }
@@ -21,11 +23,16 @@ type Comment {
 }
 
 input PostInput {
-  author: String!
+  author: String
   place: String
   description: String
   hashtags: String
-  image: String!
+  image: Upload
+}
+
+input CommentInput {
+  postId: ID!
+  comment: String!
 }
 
 type RootQuery{
@@ -34,6 +41,9 @@ type RootQuery{
 
 type RootMutation {
   createPost(postInput: PostInput): Post
+  likePost(postId: ID): Post
+  createComment(commentInput: CommentInput): Post
+  deleteComment(postId: ID): Post
 }
 
 schema {

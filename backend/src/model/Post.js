@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
 
 const PostSchema = new mongoose.Schema(
@@ -13,10 +12,12 @@ const PostSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    comment: {
-      type: Schema.Types.ObjectId,
-      ref: "Comment"
-    }
+    comment: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
+      }
+    ]
   },
   { timestamps: true }
 );
