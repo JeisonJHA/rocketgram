@@ -58,13 +58,48 @@ section#post-list article footer .actions img {
   margin-right: 10px;
 }
 
-section#post-list article footer p {
+section#post-list article footer .likes {
+  font-size: 14px;
+}
+
+section#post-list article footer .comments {
+  display: flex;
+  flex-direction: row;
+}
+
+section#post-list article footer .comments span {
+  font-size: 14px;
+  display: block;
+}
+
+section#post-list article footer .comments p {
   font-size: 13px;
   margin-top: 12px;
   line-height: 18px;
 }
 
-section#post-list article footer p span {
+section#post-list article footer .comments p span {
   color: #7159c1;
-  display: block;
+}
+
+section#post-list article section.newPost form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 0;
+}
+
+section#post-list article .newPost form textarea {
+  width: 100%;
+  border: 0;
+  resize: none;
+  padding: 20px;
+  text-combine-upright: initial;
+}
+
+section#post-list article .newPost form button {
+  margin-right: 10px;
 }

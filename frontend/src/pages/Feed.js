@@ -66,12 +66,35 @@ class Feed extends Component {
                       </button>
                       <img src={send} alt="" />
                     </div>
-                    <strong>{post.likes} curtidas</strong>
-                    <p>
-                      {post.description}
-                      <span>{post.hashtags}</span>
-                    </p>
+                    <div className="likes">
+                      <strong>
+                        <span>{post.likes}</span> curtidas
+                      </strong>
+                    </div>
+                    <div className="comments">
+                      <div>
+                        <span>
+                          {post.comment.length > 0 &&
+                            post.comment.length + " comentários"}
+                        </span>
+                        {post.comment &&
+                          post.comment.map(obj => (
+                            <span key={obj._id}>{obj.comment}</span>
+                          ))}
+                      </div>
+                      <p>
+                        {post.description}
+                        <span>{post.hashtags}</span>
+                      </p>
+                    </div>
+                    <div>{post.createdAt}</div>
                   </footer>
+                  <section className="newPost">
+                    <form>
+                      <textarea />
+                      <button type="submit">Post</button>
+                    </form>
+                  </section>
                 </article>
               ))
             }
