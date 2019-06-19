@@ -14,6 +14,7 @@ type Post {
   comment: [Comment]
   createdAt: String!
   updatedAt: String!
+  untilNow: String
 }
 
 type Comment {
@@ -31,8 +32,8 @@ input PostInput {
 }
 
 input CommentInput {
-  postId: ID!
-  comment: String!
+  postId: ID
+  comment: String
 }
 
 type RootQuery{
@@ -42,6 +43,7 @@ type RootQuery{
 type RootMutation {
   createPost(postInput: PostInput): Post
   likePost(postId: ID): Post
+  likeComment(postId: ID): Post
   createComment(commentInput: CommentInput): Post
   deleteComment(postId: ID): Post
 }

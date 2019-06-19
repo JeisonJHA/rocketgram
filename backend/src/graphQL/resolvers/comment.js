@@ -3,14 +3,17 @@ const Comment = require("../../model/Comment");
 const { transformPost } = require("./merge");
 
 module.exports = {
-  createComment: async args => {
-    const post = await Post.findById(args.commentInput.postId).populate(
+  createComment: async (args, req) => {
+    const { postId } = args.commentInput;
+    if (postId === null) return
+    const post = await Post.findById(postId).populate(
       "comment"
     );
     const { comment } = args.commentInput;
+    if (comment === null) return
     const commentObj = await Comment.create({ comment });
     post.comment.push(commentObj);
-
+    req.io.emit("post", post);
     await post.save();
     try {
       return transformPost(post);
@@ -31,5 +34,8 @@ module.exports = {
     } catch (err) {
       throw err;
     }
+  },
+  likeComment: async args => {
+    return null;
   }
 };
