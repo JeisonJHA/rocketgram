@@ -20,7 +20,7 @@ type Post {
 type Comment {
   _id: ID!
   comment: String!
-  like: Int
+  likes: Int
 }
 
 input PostInput {
@@ -43,7 +43,7 @@ type RootQuery{
 type RootMutation {
   createPost(postInput: PostInput): Post
   likePost(postId: ID): Post
-  likeComment(postId: ID): Post
+  likeComment(postId: ID): Comment
   createComment(commentInput: CommentInput): Post
   deleteComment(postId: ID): Post
 }

@@ -1,8 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const Defaultbtn = (props) => (
+import "./DefaultBtn.css";
+
+const Defaultbtn = props => (
   <button className="defaultBtn" {...props}>
     {props && props.children}
-  </button>);
+  </button>
+);
 
 export default Defaultbtn;

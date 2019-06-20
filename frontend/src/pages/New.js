@@ -3,7 +3,7 @@ import { Mutation } from "react-apollo";
 
 import "./New.css";
 
-import createPost from "../mutations/createPost";
+import createPost from "../graphQL/mutations/createPost";
 
 class New extends Component {
   state = {

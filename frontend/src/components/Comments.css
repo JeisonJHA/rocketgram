@@ -1,0 +1,27 @@
+.comments {
+  display: block;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.likeCmt {
+  height: 10px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: 6px;
+}
+
+.viewCount {
+  margin-bottom: 8px;
+  color: #666;
+  border: 0;
+  outline: 0;
+  background: #fff;
+  padding: 0;
+  cursor: pointer;
+}
