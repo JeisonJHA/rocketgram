@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { graphql } from "react-apollo";
 
 import createComment from "../graphQL/mutations/createComment";
 
 import "./NewPost.css";
-import { graphql } from "react-apollo";
 
 const NewPost = props => {
   const [commentState, setCommentState] = useState("");
@@ -13,6 +13,7 @@ const NewPost = props => {
     e.preventDefault();
     if (commentState === "") return;
     props.createComment({ variables: { postId: id, comment: commentState } });
+    setCommentState("");
   };
 
   return (

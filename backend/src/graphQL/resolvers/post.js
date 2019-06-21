@@ -19,6 +19,14 @@ module.exports = {
       throw err;
     }
   },
+  post: async data => {
+    const post = await Post.findById(data.postID).populate("comment");
+    try {
+      return transformPost(post);
+    } catch (err) {
+      throw err;
+    }
+  },
   likePost: async (data, req) => {
     const post = await Post.findById(data.postId);
 

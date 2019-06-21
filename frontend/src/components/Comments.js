@@ -1,5 +1,6 @@
 import React from "react";
 import { graphql } from "react-apollo";
+import { Link } from "react-router-dom";
 
 import Defaultbtn from "./DefaultBtn";
 
@@ -10,35 +11,39 @@ import hitLikeCmt from "../graphQL/mutations/hitLikeCmt";
 import "./Comments.css";
 
 const Comments = props => {
-  const { post } = props;
+  const { post, nshow, showall } = props;
   const linkButtonToComments = post => {
-    if (post.comment.length <= 3) return;
+    if (post.comment.length <= 3 || showall) return;
     return (
-      <button className="viewCount">
+      <Link to={{ pathname: `/comment/${post._id}` }} className="viewCount">
         View all {post.comment.length} comments
-      </button>
+      </Link>
     );
   };
+
+  const likeComment = id => {
+    props.hitLikeCmt({
+      variables: { postId: id }
+    });
+  };
   return (
-    <div className="comments">
+    <ul className="comments">
       {linkButtonToComments(post)}
       {post.comment &&
-        post.comment.slice(0, 3).map(obj => (
-          <div key={obj._id} className="comment">
+        post.comment.slice(0, nshow).map(obj => (
+          <li key={obj._id} className="comment">
             <span>{obj.comment}</span>
             <Defaultbtn
               type="button"
               onClick={() => {
-                props.hitLikeCmt({
-                  variables: { postId: obj._id }
-                });
+                likeComment(obj._id);
               }}
             >
               <img className="likeCmt" src={like} alt="" />
             </Defaultbtn>
-          </div>
+          </li>
         ))}
-    </div>
+    </ul>
   );
 };
 

@@ -38,6 +38,7 @@ input CommentInput {
 
 type RootQuery{
   posts: [Post!]
+  post(postID: ID): Post
 }
 
 type RootMutation {

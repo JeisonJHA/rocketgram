@@ -25,7 +25,7 @@ const Actions = props => {
         <img src={like} alt="" />
       </Defaultbtn>
       <Defaultbtn>
-        <Link to={{ pathname: "/comment", query: { post: post } }}>
+        <Link to={{ pathname: `/comment/${post._id}` }}>
           <img src={comment} alt="" />
         </Link>
       </Defaultbtn>

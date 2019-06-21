@@ -28,7 +28,6 @@ const Feed = props => {
       props.allPosts.refetch();
     });
   };
-
   return (
     <section id="post-list">
       {!props.allPosts.loading &&
@@ -45,7 +44,7 @@ const Feed = props => {
                   {post.description}
                   <span> {post.hashtags}</span>
                 </p>
-                <Comments post={post} />
+                <Comments post={post} nshow={3} showall={false} />
               </div>
               <TimeAgo post={post} />
             </footer>

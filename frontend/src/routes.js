@@ -10,7 +10,7 @@ function Routes() {
     <Switch>
       <Route path="/" exact component={Feed} />
       <Route path="/new" component={New} />
-      <Route path="/comment" component={Comment} />
+      <Route path="/comment/:ID" component={Comment} />
     </Switch>
   );
 }
